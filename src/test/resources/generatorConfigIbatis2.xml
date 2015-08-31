@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  	<!-- classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 -->
+	<classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.21\mysql-connector-java-5.1.21.jar" />
+  <!-- This should cause an error because sqlMapGenerator is always required
+       for Ibatis2 -->
+  <context id="Ibatis2Java5" targetRuntime="Custom" defaultModelType="flat">
+    	<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.AnnotationPlugin" />
+		<plugin type="org.mybatis.generator.plugins.CustomNeteaseCodePlugin">
+			<property name="superClass" value="com.netease.yueduop.dao.AbstractDAO" />
+			<property name="DBRouteClass" value="com.netease.yueduop.persistence.DBRoute" />
+			<property name="DBRouteMethod" value="DBRoute.getRoute(&quot;proxyTest&quot;)" />
+		</plugin>
+		<plugin type="org.mybatis.generator.plugins.CustomServicePlugin">
+			<property name="targetPackage" value="com.netease.yueduop.service" />
+			<property name="targetProject" value="D:\Downloads\mybatis-generator-core-1.3.2\gen-sample" />
+			<property name="enableInsertSelective" value="true" />
+			<property name="enableSelectByPrimaryKey" value="true" />
+			<property name="enableUpdateByPrimaryKey" value="true" />
+			<property name="enableDeleteByPrimaryKey" value="true" />
+			<property name="enableInsert" value="false" />
+			<property name="enableDeleteByExample" value="false" />
+			<property name="enableUpdateByPrimaryKeySelective" value="false" />
+			<property name="enableUpdateByExampleSelective" value="false" />
+			<property name="enableUpdateByExample" value="false" />
+		</plugin>
+		<commentGenerator>
+		  <property name="suppressAllComments" value="true" />
+		</commentGenerator>
+	   <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://fkmm6.photo.163.org:3306/ydSuggest" userId="ydtest" password="ydtest">
+		</jdbcConnection>
+		
+		<!-- targetProject:自动生成代码的位置 -->
+		<javaModelGenerator targetPackage="com.netease.yueduop.domain" targetProject="D:\Downloads\mybatis-generator-core-1.3.2\gen-sample">
+			<!-- <property name="enableSubPackages" value="true" /> -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.netease.yueduop.sqlmap"  targetProject="D:\Downloads\mybatis-generator-core-1.3.2\gen-sample">
+			<!-- <property name="enableSubPackages" value="true" /> -->
+		</sqlMapGenerator>
+		<javaClientGenerator type="org.mybatis.generator.codegen.ibatis2.dao.CustomDAOGenerator" targetPackage="com.netease.yueduop.dao.impl"  targetProject="D:\Downloads\mybatis-generator-core-1.3.2\gen-sample">
+			<property name="methodNameCalculator" value="extended" />
+		</javaClientGenerator>
+    
+    		<!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+		<table tableName="admin_test" domainObjectName="AdminTest" alias="admin" 
+		enableInsert="true" enableSelectByPrimaryKey="true"  enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+		 enableDeleteByExample="false"  enableUpdateByExample="false" enableCountByExample="false" enableSelectByExample="false"/>
+		 
+		<table tableName="AdminGroup" domainObjectName="AdminGroup" alias="adminGroup" 
+		enableInsert="true" enableSelectByPrimaryKey="true"  enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+		 enableDeleteByExample="false"  enableUpdateByExample="false" enableCountByExample="false" enableSelectByExample="false">
+			<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
+		</table>
+  </context>
+</generatorConfiguration>
